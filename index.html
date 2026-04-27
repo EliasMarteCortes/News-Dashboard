@@ -9,10 +9,25 @@
 
   <header>
     <h1>News Dashboard</h1>
+    <input type="text" id="search-input" placeholder="Search news..." />
+    <button id="search-btn">Search</button>
   </header>
+
+  <div class="categories">
+    <button class="cat-btn" value="business">Business</button>
+    <button class="cat-btn" value="entertainment">Entertainment</button>
+    <button class="cat-btn" value="general">General</button>
+    <button class="cat-btn" value="health">Health</button>
+    <button class="cat-btn" value="science">Science</button>
+    <button class="cat-btn" value="sports">Sports</button>
+    <button class="cat-btn" value="technology">Technology</button>
+  </div>
 
   <main>
     <div id="news-container"></div>
+    <section id="favorites-section">
+      <h2>Saved Favorites</h2>
+      <div id="favorites-container"></div>
   </main>
 
   <script src="script.js"></script>

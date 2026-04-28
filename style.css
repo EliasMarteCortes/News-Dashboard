@@ -66,3 +66,29 @@ header button {
 header button:hover {
     background: var(--accent-dark);
 }
+
+.categories {
+    background: var(--header-bg);
+    padding: 10px 28px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    justify-content: center;
+}
+
+.cat-btn {
+    padding: 6px 16px;
+    background: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.cat-btn:hover {
+    color: var(--text);
+    border-color: var(--accent);
+}

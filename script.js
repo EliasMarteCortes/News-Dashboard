@@ -57,14 +57,33 @@ function showNews(list, containerId) {
 let catBtns = document.querySelectorAll(".cat-btn");
 
 for (let i = 0; i < catBtns.length; i++) {
-  catBtns[i].addEventListener("click", function() {
+    catBtns[i].addEventListener("click", function() {
 
-    for (let j = 0; j < catBtns.length; j++) {
-      catBtns[j].classList.remove("active");
+        for (let j = 0; j < catBtns.length; j++) {
+        catBtns[j].classList.remove("active");
+        }
+
+        this.classList.add("active");
+
+        getNews(this.value, "");
+    });
+}
+
+let searchBtn = document.getElementById("search-btn");
+let searchInput = document.getElementById("search-input");
+
+searchBtn.addEventListener("click", function() {
+    let query = searchInput.value;
+
+    if (query == "") {
+    return;
     }
 
-    this.classList.add("active");
+    getNews("", query);
+});
 
-    getNews(this.value, "");
-  });
-}
+searchInput.addEventListener("keydown", function(e) {
+    if (e.key == "Enter") {
+        searchBtn.click();
+    }
+})

@@ -35,7 +35,7 @@ function showNews(list, containerId) {
 
     for (let i = 0; i < list.length; i++) {
         let article = list[i];
-        let thumbnail = article.fields.thumbnail ? article.fields.thumbnail: "https://placehold.co/280x160?text=No+Imag ";
+        let thumbnail = article.fields.thumbnail ? article.fields.thumbnail: "https://placehold.co/280x160?text=No+Image";
         let desc = article.fields.trailText ? article.fields.trailText : "No description available.";
 
         let card = document.createElement("div");
@@ -43,9 +43,11 @@ function showNews(list, containerId) {
 
         card.innerHTML = `
             <img src="${thumbnail}" alt="Article Image">
-            <h3>${article.webTitle}</h3>
-            <p>${desc}</p>
-            <a href="${article.webUrl}" target="_blank">Read more</a>
+            <div class="card-content">
+                <h3>${article.webTitle}</h3>
+                <p>${desc}</p>
+                <a href="${article.webUrl}" target="_blank">Read more</a>
+            </div>
         `;
 
         newsContainer.appendChild(card);

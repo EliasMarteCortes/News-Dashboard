@@ -175,3 +175,11 @@ main {
 .card-content button:hover {
     background: var(--accent-dark);
 }
+
+.remove-btn {
+    background: #dc2626 !important;
+}
+
+.remove-btn:hover {
+    background: #b91c1c !important;
+}

@@ -17,14 +17,14 @@ function getNews(category, query) {
     fetch(url).then(response => response.json()).then(data => {
         articles = data.response.results;
         console.log(articles);
-        showNews(articles, "news-container");
+        showNews(articles, "news-container", true);
     }).catch(error => {
         console.error("Error fetching news:", error); 
 
     });
 }
 
-function showNews(list, containerId) {
+function showNews(list, containerId, showSaveBtn) {
     let newsContainer = document.getElementById(containerId);
     newsContainer.innerHTML = "";
 
@@ -40,6 +40,13 @@ function showNews(list, containerId) {
 
         let card = document.createElement("div");
         card.className = "card";
+        
+        let saveBtn = "";
+        if (showSaveBtn) {
+            saveBtn = `<button onClick="saveArticle(${i})">Save</button>`;
+        } else {
+            saveBtn = `<button onClick="removeArticle('${article.webUrl}')" class="remove-btn">Remove</button>`;
+        }
 
         card.innerHTML = `
             <img src="${thumbnail}" alt="Article Image">
@@ -47,6 +54,7 @@ function showNews(list, containerId) {
                 <h3>${article.webTitle}</h3>
                 <p>${desc}</p>
                 <a href="${article.webUrl}" target="_blank">Read more</a>
+                ${saveBtn}
             </div>
         `;
 
@@ -87,3 +95,27 @@ searchInput.addEventListener("keydown", function(e) {
         searchBtn.click();
     }
 })
+
+function saveArticle(index) {
+    let article = articles[index]
+
+    if (favorites[article.webUrl]) {
+        alert("Already saved!")
+        return
+    }
+
+    favorites[article.webUrl] = article
+    showFavorites()
+}
+
+function removeArticle(url) {
+    delete favorites[url]
+    showFavorites()
+}
+
+function showFavorites() {
+    let saved = Object.values(favorites)
+    showNews(saved, "favorites-container", false)
+}
+
+getNews();

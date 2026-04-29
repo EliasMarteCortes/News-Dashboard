@@ -183,3 +183,9 @@ main {
 .remove-btn:hover {
     background: #b91c1c !important;
 }
+
+#favorites-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}

@@ -151,3 +151,9 @@ main {
 .card-content a:hover {
     text-decoration: underline;
 }
+
+.cat-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}

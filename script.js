@@ -4,7 +4,7 @@ articles = []
 favorites = {}
 
 function getNews(category, query) {
-    const url = `https://content.guardianapis.com/search?api-key=${API_KEY}&show-fields=thumbnail,trailText&page-size=20`;
+    let url = `https://content.guardianapis.com/search?api-key=${API_KEY}&show-fields=thumbnail,trailText&page-size=20`;
 
     if (category) {
         url = url + `&section=${category}`;
@@ -54,4 +54,17 @@ function showNews(list, containerId) {
     }
 };
 
-getNews();
+let catBtns = document.querySelectorAll(".cat-btn");
+
+for (let i = 0; i < catBtns.length; i++) {
+  catBtns[i].addEventListener("click", function() {
+
+    for (let j = 0; j < catBtns.length; j++) {
+      catBtns[j].classList.remove("active");
+    }
+
+    this.classList.add("active");
+
+    getNews(this.value, "");
+  });
+}

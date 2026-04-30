@@ -24,6 +24,12 @@ function getNews(category, query) {
     });
 }
 
+// showNews runtime analysis:
+// this function loops through every article in the list once to build its card
+// that makes it O(n) where n is the number of articles
+// if there are 10 articles it does 10 iterations, if increased to 20 articles then it does 20 iterations
+// it grows linearly with the size of the list
+// a nested loop would make it O(n^2) but we only have one loop so it stays O(n)
 function showNews(list, containerId, showSaveBtn) {
     let newsContainer = document.getElementById(containerId);
     newsContainer.innerHTML = "";

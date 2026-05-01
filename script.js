@@ -102,6 +102,8 @@ searchInput.addEventListener("keydown", function(e) {
     }
 })
 
+// saveArticle is O(1) - checking and inserting into a dictionary by key is constant time
+// it doesn't matter how many articles are already saved, it always takes the same steps
 function saveArticle(index) {
     let article = articles[index]
 
@@ -114,6 +116,7 @@ function saveArticle(index) {
     showFavorites()
 }
 
+// removeArticle is O(1) - deleting a key from a dictionary is also constant time
 function removeArticle(url) {
     delete favorites[url]
     showFavorites()

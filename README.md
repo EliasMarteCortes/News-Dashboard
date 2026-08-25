@@ -44,7 +44,7 @@ Note: This project runs entirely in the browser, so the API key can be seen in t
 ## Project Files
 
 ```
-news-dashboard/
+News-Dashboard/
   index.html   page structure
   style.css    styling
   script.js    fetching, rendering, and favorites logic

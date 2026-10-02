@@ -1,5 +1,3 @@
-const API_KEY = "9ae5290a-938e-46bc-885a-8e24e19783e8";
-
 articles = [];
 favorites = JSON.parse(localStorage.getItem("favorites")) || {};
 

@@ -12,14 +12,21 @@ function getNews(category, query) {
         url = url + `&q=${query}`;
     }
 
-    fetch(url).then(response => response.json()).then(data => {
-        articles = data.response.results;
-        console.log(articles);
-        showNews(articles, "news-container", true);
-    }).catch(error => {
-        console.error("Error fetching news:", error); 
-
-    });
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            articles = data.response.results;
+            showNews(articles, "news-container", true);
+        })
+        .catch(error => {
+            console.error("Error fetching news:", error);
+            newsContainer.innerHTML = "<p>Sorry, we couldn't load the news right now. Please try again later.</p>";
+        });
 }
 
 // showNews runtime analysis:

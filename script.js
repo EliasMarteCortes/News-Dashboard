@@ -1,7 +1,7 @@
 const API_KEY = "9ae5290a-938e-46bc-885a-8e24e19783e8";
 
-articles = []
-favorites = {}
+articles = [];
+favorites = JSON.parse(localStorage.getItem("favorites")) || {};
 
 function getNews(category, query) {
     let url = `https://content.guardianapis.com/search?api-key=${API_KEY}&show-fields=thumbnail,trailText&page-size=20`;
@@ -105,26 +105,33 @@ searchInput.addEventListener("keydown", function(e) {
 // saveArticle is O(1) - checking and inserting into a dictionary by key is constant time
 // it doesn't matter how many articles are already saved, it always takes the same steps
 function saveArticle(index) {
-    let article = articles[index]
+    let article = articles[index];
 
     if (favorites[article.webUrl]) {
-        alert("Already saved!")
-        return
+        alert("Already saved!");
+        return;
     }
 
-    favorites[article.webUrl] = article
-    showFavorites()
+    favorites[article.webUrl] = article;
+    saveFavorites();
+    showFavorites();
 }
 
 // removeArticle is O(1) - deleting a key from a dictionary is also constant time
 function removeArticle(url) {
-    delete favorites[url]
-    showFavorites()
+    delete favorites[url];
+    saveFavorites();
+    showFavorites();
 }
 
 function showFavorites() {
-    let saved = Object.values(favorites)
-    showNews(saved, "favorites-container", false)
+    let saved = Object.values(favorites);
+    showNews(saved, "favorites-container", false);
 }
 
+function saveFavorites() {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+showFavorites();
 getNews();
